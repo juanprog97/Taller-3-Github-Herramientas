@@ -33,6 +33,24 @@ class asignRolPerfectly():
         for value in self.sheetSearch.iter_rows(min_row=2,min_col=1,max_col=4,values_only=True):
             self.dataUserOfficial[str(value[0]).strip()] = [value[2],value[3]]
         print(len(self.dataUserOfficial))
+
+    def searchRoland(self,value):
+        for val in self.RolandCharge:
+            if(val[1].strip() == value[0].strip() and val[2].strip() == value[1].strip()):
+                return True
+        return False
+    
+    def rolVsCharge(self):
+        for val in self.inputData:
+            try:
+                dat = self.dataUserOfficial[val[0]]
+                if(self.searchRoland(dat) == False):
+                    self.RolandCharge.append((self.rol,dat[0],dat[1]))
+            except KeyError:
+                self.NotFounded.append(val)
+
+        print(len(self.RolandCharge))
+        print(len(self.NotFounded))
     
 
 
