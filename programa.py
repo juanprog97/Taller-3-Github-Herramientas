@@ -51,6 +51,19 @@ class asignRolPerfectly():
 
         print(len(self.RolandCharge))
         print(len(self.NotFounded))
+        self.createDoc()
+    def createDoc(self):
+        self.NewExcel = xlsxwriter.Workbook('RolvsCargos.xlsx')
+        self.Founds = self.NewExcel.add_worksheet("Found")
+        self.NotFounds = self.NewExcel.add_worksheet("NotFound")
+        for i in range(len(self.RolandCharge)):
+            self.Founds.write(i,0,self.RolandCharge[i][0])
+            self.Founds.write(i,1,self.RolandCharge[i][1])
+            self.Founds.write(i,2,self.RolandCharge[i][2])
+        for j in range(len(self.NotFounded)):
+            self.NotFounds.write(j,0,self.NotFounded[j][0])
+            self.NotFounds.write(j,1,self.NotFounded[j][1])
+        self.NewExcel.close()
     
 
 
