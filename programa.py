@@ -47,7 +47,7 @@ class Ui_MainPrincipal(QWidget):
         self.horizontalLayout.addWidget(self.textEdit)
         self.buscarDocListado = QtWidgets.QPushButton(self.verticalLayoutWidget)
         self.buscarDocListado.setObjectName("buscarDocListado")
-       # self.buscarDocListado.clicked.connect(self.clickedButtonListadoAgregados)#call the function for open de file picker
+        self.buscarDocListado.clicked.connect(self.clickedButtonListadoAgregados)#call the function for open de file picker
         self.horizontalLayout.addWidget(self.buscarDocListado)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.label_3 = QtWidgets.QLabel(self.verticalLayoutWidget)
@@ -68,7 +68,7 @@ class Ui_MainPrincipal(QWidget):
         self.horizontalLayout_3.addWidget(self.textEdit_3)
         self.buscarDocExac = QtWidgets.QPushButton(self.verticalLayoutWidget)
         self.buscarDocExac.setObjectName("buscarDocExac")
-        #self.buscarDocExac.clicked.connect(self.clickedButtonMatrizCargos) #call the function for open de file picker
+        self.buscarDocExac.clicked.connect(self.clickedButtonMatrizCargos) #call the function for open de file picker
         self.buscarDocExac.setEnabled(True)
         self.horizontalLayout_3.addWidget(self.buscarDocExac)
         self.verticalLayout.addLayout(self.horizontalLayout_3)
@@ -90,6 +90,35 @@ class Ui_MainPrincipal(QWidget):
         self.retranslateUi(MainPrincipal)
         QtCore.QMetaObject.connectSlotsByName(MainPrincipal)
 
+
+    def openFileNameDialog1(self):
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileName, _ = QFileDialog.getOpenFileName(self,"Directorio", "","All Files (*);;Excel Files (*.xlsx)", options=options)
+        if fileName:
+            self.source = fileName
+            self.textEdit.setText(str(fileName))
+            self.buscarDocExac.setEnabled(True)
+
+
+    def openFileNameDialog2(self):
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileName, _ = QFileDialog.getOpenFileName(self,"Directorio", "","All Files (*);;Excel Files (*.xlsx)", options=options)
+        if fileName:
+            self.search = fileName
+            self.textEdit_3.setText(str(fileName))
+            print(self.search)
+            #self.nombreRol.setEnabled(True)
+            #self.GenerarDoc.setEnabled(True)
+
+
+    def  clickedButtonMatrizCargos(self):   #Function Create QTwigdetTrre
+        self.openFileNameDialog2()
+
+    def clickedButtonListadoAgregados(self): #Function Create QTwigdetTrre
+        self.openFileNameDialog1()
+        
     def retranslateUi(self, MainPrincipal):
         _translate = QtCore.QCoreApplication.translate
         MainPrincipal.setWindowTitle(_translate("MainPrincipal", "Asignador De Roles"))
