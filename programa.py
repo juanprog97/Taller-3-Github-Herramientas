@@ -19,12 +19,20 @@ class asignRolPerfectly():
         self.NotFounded = [] 
 
         self.loadDataSource()
-    
+        self.loadDataSearch()
+
     def loadDataSource(self):
         self.inputData = []
         for value in self.sheetSource.iter_rows(min_row=2,min_col=2,max_col=3,values_only=True):
             self.inputData.append((str(value[0]).strip(),value[1]))
         print(len(self.inputData))
+    
+    def loadDataSearch(self):
+        self.dataUserOfficial = {}
+        for value in self.sheetSearch.iter_rows(min_row=2,min_col=1,max_col=4,values_only=True):
+            self.dataUserOfficial[str(value[0]).strip()] = [value[2],value[3]]
+        print(len(self.dataUserOfficial))
+    
 
 
 
