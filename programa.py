@@ -20,8 +20,8 @@ class Ui_MainPrincipal(QWidget):
         self.GenerarDoc = QtWidgets.QPushButton(self.centralwidget)
         self.GenerarDoc.setGeometry(QtCore.QRect(190, 180, 81, 31))
         self.GenerarDoc.setObjectName("GenerarDoc")
-        #self.GenerarDoc.clicked.connect(self.generarDoc)
-        self.GenerarDoc.setEnabled(True)
+        self.GenerarDoc.clicked.connect(self.generarDoc)
+        self.GenerarDoc.setEnabled(False)
         self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(40, 30, 371, 81))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
@@ -69,14 +69,14 @@ class Ui_MainPrincipal(QWidget):
         self.buscarDocExac = QtWidgets.QPushButton(self.verticalLayoutWidget)
         self.buscarDocExac.setObjectName("buscarDocExac")
         self.buscarDocExac.clicked.connect(self.clickedButtonMatrizCargos) #call the function for open de file picker
-        self.buscarDocExac.setEnabled(True)
+        self.buscarDocExac.setEnabled(False)
         self.horizontalLayout_3.addWidget(self.buscarDocExac)
         self.verticalLayout.addLayout(self.horizontalLayout_3)
         self.nombreRol = QtWidgets.QPlainTextEdit(self.centralwidget)
         self.nombreRol.setGeometry(QtCore.QRect(40, 130, 281, 21))
         self.nombreRol.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.nombreRol.setObjectName("nombreRol")
-        self.nombreRol.setEnabled(True)
+        self.nombreRol.setEnabled(False)
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(330, 130, 111, 21))
         font = QtGui.QFont()
@@ -109,8 +109,8 @@ class Ui_MainPrincipal(QWidget):
             self.search = fileName
             self.textEdit_3.setText(str(fileName))
             print(self.search)
-            #self.nombreRol.setEnabled(True)
-            #self.GenerarDoc.setEnabled(True)
+            self.nombreRol.setEnabled(True)
+            self.GenerarDoc.setEnabled(True)
 
 
     def  clickedButtonMatrizCargos(self):   #Function Create QTwigdetTrre
@@ -118,6 +118,11 @@ class Ui_MainPrincipal(QWidget):
 
     def clickedButtonListadoAgregados(self): #Function Create QTwigdetTrre
         self.openFileNameDialog1()
+    
+    def generarDoc(self):
+        print("echo")
+        #self.analizedDoc = asignRolPerfectly(self.nombreRol.toPlainText(),self.source,self.search)
+        #self.analizedDoc.rolVsCharge()
         
     def retranslateUi(self, MainPrincipal):
         _translate = QtCore.QCoreApplication.translate
