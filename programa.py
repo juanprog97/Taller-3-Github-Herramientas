@@ -13,13 +13,14 @@ class asignRolPerfectly():
         self.rol = rol
         self.sheetSource = self.sourceDoc.active
         self.sheetSearch = self.searchDoc.active
-
-
+        self.thread1 = threading.Thread(target=self.loadDataSearch)
+        self.thread2 = threading.Thread(target=self.loadDataSource)
+        self.thread1.start()
+        self.thread2.start()
         self.RolandCharge = []
         self.NotFounded = [] 
-
-        self.loadDataSource()
-        self.loadDataSearch()
+        self.thread1.join()
+        self.thread2.join()
 
     def loadDataSource(self):
         self.inputData = []
