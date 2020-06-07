@@ -6,6 +6,28 @@ from PyQt5.QtWidgets import QApplication, QWidget, QInputDialog, QLineEdit, QFil
 from PyQt5.QtGui import QIcon
 import threading
 
+class asignRolPerfectly():
+    def __init__(self,rol,source,search):
+        self.sourceDoc = load_workbook(filename=source)
+        self.searchDoc = load_workbook(filename=search)
+        self.rol = rol
+        self.sheetSource = self.sourceDoc.active
+        self.sheetSearch = self.searchDoc.active
+
+
+        self.RolandCharge = []
+        self.NotFounded = [] 
+
+        self.loadDataSource()
+    
+    def loadDataSource(self):
+        self.inputData = []
+        for value in self.sheetSource.iter_rows(min_row=2,min_col=2,max_col=3,values_only=True):
+            self.inputData.append((str(value[0]).strip(),value[1]))
+        print(len(self.inputData))
+
+
+
 class Ui_MainPrincipal(QWidget):
     def setupUi(self, MainPrincipal):
         MainPrincipal.setObjectName("MainPrincipal")
@@ -120,8 +142,8 @@ class Ui_MainPrincipal(QWidget):
         self.openFileNameDialog1()
     
     def generarDoc(self):
-        print("echo")
-        #self.analizedDoc = asignRolPerfectly(self.nombreRol.toPlainText(),self.source,self.search)
+        
+        self.analizedDoc = asignRolPerfectly(self.nombreRol.toPlainText(),self.source,self.search)
         #self.analizedDoc.rolVsCharge()
         
     def retranslateUi(self, MainPrincipal):
